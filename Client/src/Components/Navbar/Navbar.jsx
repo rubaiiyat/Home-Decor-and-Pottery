@@ -1,9 +1,63 @@
-import React from "react";
+import { Link, NavLink } from "react-router";
+import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
+  const links = (
+    <>
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#757B66] font-bold underline"
+              : "text-[#415765] hover:underline"
+          }
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/shop"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#757B66] font-bold underline"
+              : "text-[#415765] hover:underline"
+          }
+        >
+          Shop
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          to="/membership"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#757B66] font-bold underline"
+              : "text-[#415765] hover:underline"
+          }
+        >
+          Membership
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/add-item"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#757B66] font-bold underline"
+              : "text-[#415765] hover:underline"
+          }
+        >
+          Add Book
+        </NavLink>
+      </li>
+    </>
+  );
   return (
     <div>
-      <div className="navbar bg-base-100 shadow-sm">
+      <div className="navbar bg-[#F4F0ED] shadow-sm md:px-24">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -25,54 +79,44 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content  rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
+              {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="btn btn-ghost text-[#415765]  text-xl [font-family:'Macondo',cursive]">
+            Pottery
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+          <ul className="menu menu-horizontal px-1 text-base font-bold">
+            {links}
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <div className="dropdown dropdown-center">
+            <div
+              tabIndex={0}
+              role="button"
+              className=" m-1 bg-[#F4F0ED] text-[#415765] hover:cursor-pointer text-2xl"
+            >
+              <FaUserCircle />
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content bg-[#F4F0ED] menu  rounded-box z-1  p-2 shadow-sm text-[#415765]"
+            >
+              <li>
+                <a>Profile</a>
+              </li>
+              <li>
+                <a>Register</a>
+              </li>
+              <li>
+                <a>Login</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
