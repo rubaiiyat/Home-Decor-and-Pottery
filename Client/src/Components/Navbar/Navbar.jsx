@@ -57,7 +57,7 @@ const Navbar = () => {
   );
   return (
     <div>
-      <div className="navbar bg-[#F4F0ED] shadow-sm md:px-24">
+      <div className="navbar bg-[#F4F0ED] shadow-sm md:px-24 ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -84,12 +84,12 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-[#415765]  text-xl [font-family:'Macondo',cursive]">
+          <a className="btn btn-ghost text-[#415765]  text-3xl lg:text-4xl font-bold  [font-family:'Macondo',cursive]">
             Pottery
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-base font-bold">
+          <ul className="menu menu-horizontal px-1 text-base font-semibold [font-family:'Maven Pro']">
             {links}
           </ul>
         </div>
