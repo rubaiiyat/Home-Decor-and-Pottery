@@ -1,4 +1,4 @@
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -27,6 +27,7 @@ async function run() {
     const database = client.db("potteryshop");
     const itemCollection = database.collection("potteryitem");
 
+    // Create Post
     app.post("/add-item", async (req, res) => {
       const post = req.body;
 
@@ -35,6 +36,44 @@ async function run() {
         res.status(200).json({
           message: "Item Added Successfull",
           title: post.name,
+        });
+      } catch (error) {
+        res.status(404).json({
+          message: error.message,
+        });
+      }
+    });
+
+    // Show All Items
+
+    app.get("/all-items", async (req, res) => {
+      try {
+        const result = await itemCollection.find().toArray();
+        res.status(200).json(result);
+      } catch (error) {
+        res.status(404).json({
+          message: error.message,
+        });
+      }
+    });
+
+    app.put("/item/update/:id", async (req, res) => {
+      const itemId = req.params.id;
+
+      try {
+        const result = await itemCollection.updateOne(
+          { _id: new ObjectId(itemId) },
+          { $set: req.body }
+        );
+
+        if (result.matchedCount == 0) {
+          res.status(200).json({
+            message: "Item Not Found",
+          });
+        }
+
+        res.status(200).json({
+          message: "Item Updated Successfully",
         });
       } catch (error) {
         res.status(404).json({
