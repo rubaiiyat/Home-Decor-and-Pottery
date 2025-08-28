@@ -23,6 +23,7 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <Shop />,
+        loader: () => fetch("http://localhost:3000/all-items"),
       },
       {
         path: "/membership",

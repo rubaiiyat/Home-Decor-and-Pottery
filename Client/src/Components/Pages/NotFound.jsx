@@ -4,9 +4,6 @@ import { Helmet } from "react-helmet";
 const NotFound = () => {
   return (
     <div>
-      <Helmet>
-        <title>Not Found</title>
-      </Helmet>
       <section className="bg-[#F4F0ED] flex items-center justify-center min-h-screen">
         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
           <div className="mx-auto max-w-screen-sm text-center">
