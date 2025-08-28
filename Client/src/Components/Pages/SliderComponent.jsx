@@ -71,7 +71,7 @@ const SliderComponent = () => {
                   <p className="text-lg lg:text-xl mb-6 lg:mb-8 max-w-md mx-auto lg:mx-0 leading-relaxed ">
                     {slide.description}
                   </p>
-                  <button className="px-6 lg:px-8 py-2 lg:py-3 bg-[#757B66] text-[#F4F0ED] font-semibold rounded-full hover:bg-[#656B56] transition-all text-xl">
+                  <button className="px-6 lg:px-8 py-2 lg:py-3 bg-[#415765] text-[#F4F0ED] font-semibold rounded-full hover:cursor-pointer transition-all text-xl">
                     {slide.buttonText}
                   </button>
                 </div>

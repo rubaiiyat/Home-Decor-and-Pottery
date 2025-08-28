@@ -9,7 +9,7 @@ const Navbar = () => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? "text-[#757B66] font-bold underline"
+              ? "text-[#415765] font-bold underline"
               : "text-[#415765] hover:underline"
           }
         >
@@ -21,7 +21,7 @@ const Navbar = () => {
           to="/shop"
           className={({ isActive }) =>
             isActive
-              ? "text-[#757B66] font-bold underline"
+              ? "text-[#415765] font-bold underline"
               : "text-[#415765] hover:underline"
           }
         >
@@ -34,7 +34,7 @@ const Navbar = () => {
           to="/membership"
           className={({ isActive }) =>
             isActive
-              ? "text-[#757B66] font-bold underline"
+              ? "text-[#415765] font-bold underline"
               : "text-[#415765] hover:underline"
           }
         >
@@ -46,7 +46,7 @@ const Navbar = () => {
           to="/add-item"
           className={({ isActive }) =>
             isActive
-              ? "text-[#757B66] font-bold underline"
+              ? "text-[#415765] font-bold underline"
               : "text-[#415765] hover:underline"
           }
         >
