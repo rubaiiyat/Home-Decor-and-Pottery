@@ -9,7 +9,6 @@ function App() {
       <nav className="">
         <Navbar></Navbar>
       </nav>
-      <SliderComponent></SliderComponent>
       <main className="min-h-[calc(100vh-100px)] ">
         <Outlet></Outlet>
       </main>

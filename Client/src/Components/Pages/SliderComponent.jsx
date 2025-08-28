@@ -14,8 +14,7 @@ const SliderComponent = () => {
       description:
         "Handcrafted pottery pieces that bring elegance and natural beauty to your home. Each piece is uniquely crafted with care and attention to detail.",
       buttonText: "Explore Collection",
-      image:
-        "https://images.unsplash.com/photo-1578775887800-4b11732c2bf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80",
+      image: "https://i.ibb.co.com/zHB3YSZP/erasebg-transformed-3.webp",
     },
     {
       id: 2,
@@ -23,8 +22,7 @@ const SliderComponent = () => {
       description:
         "Transform your living space with our contemporary pottery designs that blend functionality with artistic expression.",
       buttonText: "Shop Now",
-      image:
-        "https://images.unsplash.com/photo-1588850790165-5d517ead7875?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80",
+      image: "https://i.ibb.co.com/zVGxFh63/erasebg-transformed-2.png",
     },
     {
       id: 3,
@@ -32,17 +30,7 @@ const SliderComponent = () => {
       description:
         "Discover the perfect blend of traditional craftsmanship and modern design in our exclusive pottery collection.",
       buttonText: "View Products",
-      image:
-        "https://images.unsplash.com/photo-1598407307310-7b288f3d091c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80",
-    },
-    {
-      id: 4,
-      title: "Sustainable Homeware",
-      description:
-        "Eco-friendly pottery made with sustainable practices, bringing natural elegance to your everyday life.",
-      buttonText: "Learn More",
-      image:
-        "https://images.unsplash.com/photo-1631443885455-2c7f3e143491?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80",
+      image: "https://i.ibb.co.com/8nRT9Gyw/erasebg-transformed.webp",
     },
   ];
 

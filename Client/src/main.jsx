@@ -8,12 +8,17 @@ import NotFound from "./Components/Pages/NotFound.jsx";
 import Shop from "./Components/Pages/Shop.jsx";
 import Membership from "./Components/Pages/Membership.jsx";
 import AddItem from "./Components/Pages/AddItem.jsx";
+import SliderComponent from "./Components/Pages/SliderComponent.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
     children: [
+      {
+        index: true,
+        element: <SliderComponent />,
+      },
       {
         path: "/shop",
         element: <Shop />,
