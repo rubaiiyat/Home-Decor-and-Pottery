@@ -82,6 +82,29 @@ async function run() {
       }
     });
 
+    app.delete("/item/delete/:id", async (req, res) => {
+      const deleteItem = req.params.id;
+      try {
+        const result = await itemCollection.deleteOne({
+          _id: new ObjectId(deleteItem),
+        });
+
+        if (result.deletedCount == 0) {
+          res.status(200).json({
+            message: "Item Not Found",
+          });
+        }
+
+        res.status(200).json({
+          message: "Item Deleted Successfull",
+        });
+      } catch (error) {
+        res.status(404).json({
+          message: error.message,
+        });
+      }
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
