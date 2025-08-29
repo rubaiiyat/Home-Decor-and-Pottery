@@ -1,9 +1,146 @@
-import React from "react";
-import { Helmet } from "react-helmet";
+import React, { useState } from "react";
+
 const AddItem = () => {
+  const handleSubmit = (e) => {
+    e.defaultPrevent();
+    console.log("working");
+  };
   return (
-    <div>
-      <h1>Add Item page</h1>
+    <div className="min-h-screen bg-[#E9E9E9] flex items-center justify-center py-10 px-4">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-[#F4F0ED] rounded-3xl shadow-lg p-8 w-full max-w-xl space-y-6"
+      >
+        <h2 className="text-2xl font-bold text-[#415765] text-center">
+          Add New Product
+        </h2>
+
+        {/* Name */}
+        <div>
+          <label className="block text-[#415765] font-semibold mb-1">
+            Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            required
+            className="w-full border border-[#415765]/30 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#415765] transition-all duration-300"
+            placeholder="Enter product name"
+          />
+        </div>
+
+        {/* Description */}
+        <div>
+          <label className="block text-[#415765] font-semibold mb-1">
+            Description
+          </label>
+          <textarea
+            name="description"
+            required
+            rows={3}
+            className="w-full border border-[#415765]/30 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#415765] transition-all duration-300"
+            placeholder="Enter product description"
+          />
+        </div>
+
+        {/* Image URL */}
+        <div>
+          <label className="block text-[#415765] font-semibold mb-1">
+            Image URL
+          </label>
+          <input
+            type="url"
+            name="image"
+            required
+            className="w-full border border-[#415765]/30 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#415765] transition-all duration-300"
+            placeholder="https://example.com/image.jpg"
+          />
+        </div>
+
+        {/* Category */}
+        <div>
+          <label className="block text-[#415765] font-semibold mb-1">
+            Category
+          </label>
+          <select
+            name="category"
+            className="w-full border border-[#415765]/30 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#415765] transition-all duration-300"
+          >
+            <option>Clay-made Pottery</option>
+            <option>Stoneware</option>
+            <option>Porcelain</option>
+            <option>Terra Cotta</option>
+            <option>Ceramics & Architectural</option>
+            <option>Home decor pottery</option>
+          </select>
+        </div>
+
+        {/* Price */}
+        <div>
+          <label className="block text-[#415765] font-semibold mb-1">
+            Price ($)
+          </label>
+          <input
+            type="number"
+            name="price"
+            required
+            step="0.01"
+            min="0"
+            className="w-full border border-[#415765]/30 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#415765] transition-all duration-300"
+            placeholder="Enter price"
+          />
+        </div>
+
+        {/* Rating */}
+        <div>
+          <label className="block text-[#415765] font-semibold mb-1">
+            Rating
+          </label>
+          <input
+            type="number"
+            name="rating"
+            required
+            step="0.1"
+            min="0"
+            max="5"
+            className="w-full border border-[#415765]/30 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#415765] transition-all duration-300"
+            placeholder="Enter rating (0-5)"
+          />
+        </div>
+
+        {/* Stock */}
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            defaultChecked={true}
+            name="stock"
+            className="w-5 h-5 accent-[#415765]"
+          />
+          <label className="text-[#415765] font-semibold">In Stock</label>
+        </div>
+
+        {/* Author Name */}
+        <div>
+          <label className="block text-[#415765] font-semibold mb-1">
+            Author Name
+          </label>
+          <input
+            type="text"
+            name="username"
+            required
+            className="w-full border border-[#415765]/30 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#415765] transition-all duration-300"
+            placeholder="Enter author name"
+          />
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="w-full bg-[#415765] text-[#F4F0ED] font-bold py-3 rounded-2xl shadow-md  hover:cursor-pointer"
+        >
+          Add Item
+        </button>
+      </form>
     </div>
   );
 };

@@ -57,7 +57,7 @@ const Navbar = () => {
   );
   return (
     <div>
-      <div className="navbar bg-[#F4F0ED] shadow-sm md:px-24 ">
+      <div className="navbar bg-[#D9DFD7] shadow-sm md:px-24 ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -98,7 +98,7 @@ const Navbar = () => {
             <div
               tabIndex={0}
               role="button"
-              className=" m-1 bg-[#F4F0ED] text-[#415765] hover:cursor-pointer text-2xl"
+              className=" m-1  text-[#415765] hover:cursor-pointer text-2xl"
             >
               <FaUserCircle />
             </div>
