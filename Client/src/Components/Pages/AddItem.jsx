@@ -1,9 +1,56 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 
 const AddItem = () => {
-  const handleSubmit = (e) => {
-    e.defaultPrevent();
-    console.log("working");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+
+    const name = form.name.value;
+    const description = form.description.value;
+    const image = form.image.value;
+    const category = form.category.value;
+    const price = form.price.value;
+    const rating = form.rating.value;
+    const stock = form.stock.checked;
+    const username = form.username.value;
+
+    const item = {
+      name,
+      description,
+      image,
+      category,
+      price,
+      rating,
+      stock,
+      username,
+    };
+
+    try {
+      const res = await fetch("http://localhost:3000/add-item", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(item),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        Swal.fire({
+          title: `${name} Added Successfully!`,
+          icon: "success",
+          draggable: true,
+        });
+
+        form.reset();
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...Sorry....",
+        text: "Something went wrong! Try Again",
+      });
+    }
   };
   return (
     <div className="min-h-screen bg-[#E9E9E9] flex items-center justify-center py-10 px-4">

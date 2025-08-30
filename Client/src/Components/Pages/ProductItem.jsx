@@ -3,9 +3,8 @@ import { Link } from "react-router";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
 
 const ProductItem = ({ item }) => {
-  const { _id, name, price, rating, stockStatus, username, image } = item;
-  const inStock = stockStatus === true;
-
+  const { _id, name, price, rating, stock, username, image } = item;
+  console.log(stock);
   return (
     <div className="group bg-[#F4F0ED] rounded-3xl shadow-md hover:shadow-xl transition-all duration-500 transform  hover:scale-101 overflow-hidden h-full flex flex-col border border-[#D9DFD7] relative">
       {/* Image Section */}
@@ -20,12 +19,12 @@ const ProductItem = ({ item }) => {
         {/* Stock Status Badge */}
         <span
           className={`absolute top-4 right-4 px-3 py-1.5 text-xs font-semibold rounded-full border shadow-sm text-white transform transition-transform duration-300 group-hover:scale-105 ${
-            inStock
+            stock
               ? "bg-[#415765] border-[#D9DFD7]"
               : "bg-red-500 border-red-200"
           }`}
         >
-          {inStock ? "In Stock" : "Out of Stock"}
+          {stock ? "In Stock" : "Out of Stock"}
         </span>
 
         {/* Price Tag */}
