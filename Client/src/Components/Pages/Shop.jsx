@@ -1,11 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useParams } from "react-router";
 import ProductItem from "./ProductItem";
 
 const Shop = () => {
   const items = useLoaderData();
+  console.log(items);
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
+  const { category } = useParams();
+  const [filterdItems, setFilterdItems] = useState([]);
+
+  useEffect(() => {
+    if (!items || items.length === 0) return;
+    if (category) {
+      const name = category.replace(/-/g, " ").replace(/and/g, "&");
+      const filterd = items.filter(
+        (item) =>
+          item.category.trim().toLowerCase() === name.trim().toLowerCase()
+      );
+      setFilterdItems(filterd);
+    } else {
+      setFilterdItems(items);
+    }
+  }, [category, items]);
+
   useEffect(() => {
     fetch("http://localhost:3000/users")
       .then((res) => res.json())
@@ -32,10 +50,16 @@ const Shop = () => {
           🛍️ Our Products
         </h2>
 
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 ">
-          {items.map((item) => (
-            <ProductItem key={item._id} item={item} users={users} />
-          ))}
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+          {filterdItems.length > 0 ? (
+            filterdItems.map((item) => (
+              <ProductItem key={item._id} item={item} users={users} />
+            ))
+          ) : (
+            <p className="text-center col-span-full text-gray-600">
+              No products in this category.
+            </p>
+          )}
         </div>
       </div>
     </div>

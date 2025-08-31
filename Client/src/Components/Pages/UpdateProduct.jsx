@@ -119,7 +119,7 @@ const UpdateProduct = () => {
             defaultValue={category}
             className="w-full border border-[#415765]/30 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#415765]"
           >
-            <option>Clay-made Pottery</option>
+            <option>Clay made Pottery</option>
             <option>Stoneware</option>
             <option>Porcelain</option>
             <option>Terra Cotta</option>

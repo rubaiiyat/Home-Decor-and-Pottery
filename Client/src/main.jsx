@@ -34,6 +34,15 @@ const router = createBrowserRouter([
         loader: () => fetch("http://localhost:3000/all-items"),
       },
       {
+        path: "/shop/category/:category?",
+        element: <Shop />,
+        loader: async () => {
+          const res = await fetch("http://localhost:3000/all-items");
+          const data = await res.json();
+          return data;
+        },
+      },
+      {
         path: "/membership",
         element: <Membership />,
       },

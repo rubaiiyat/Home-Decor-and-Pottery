@@ -6,9 +6,10 @@ import {
   FaCube,
   FaHome,
 } from "react-icons/fa";
+import { Link } from "react-router";
 
 const categories = [
-  { name: "Clay-made pottery", icon: <FaLeaf />, color: "#4C8479" },
+  { name: "Clay made pottery", icon: <FaLeaf />, color: "#4C8479" },
   { name: "Stoneware", icon: <FaGem />, color: "#275150" },
   { name: "Porcelain", icon: <FaMugHot />, color: "#AABAA3" },
   { name: "Terra Cotta", icon: <FaSeedling />, color: "#46685F" },
@@ -36,9 +37,9 @@ export default function Categories() {
         {/* Category Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8">
           {categories.map((cat, index) => (
-            <a
+            <Link
               key={index}
-              href={generateSlug(cat.name)}
+              to={"/shop" + generateSlug(cat.name)}
               className="flex flex-col items-center group transition-transform duration-300 hover:scale-105"
             >
               <div className="text-4xl mb-3" style={{ color: cat.color }}>
@@ -47,7 +48,7 @@ export default function Categories() {
               <span className="font-medium text-gray-800 group-hover:text-black">
                 {cat.name}
               </span>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
