@@ -37,7 +37,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-item",
-        element: <AddItem />,
+        element: (
+          <PrivateRoute>
+            <AddItem />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/auth/register",

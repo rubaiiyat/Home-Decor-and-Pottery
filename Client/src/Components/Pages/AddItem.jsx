@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Context/AuthProvider";
 
 const AddItem = () => {
+  const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -13,7 +17,6 @@ const AddItem = () => {
     const price = form.price.value;
     const rating = form.rating.value;
     const stock = form.stock.checked;
-    const username = form.username.value;
 
     const item = {
       name,
@@ -23,10 +26,11 @@ const AddItem = () => {
       price,
       rating,
       stock,
-      username,
+      userEmail: user.email,
     };
 
     try {
+      setLoading(true);
       const res = await fetch("http://localhost:3000/add-item", {
         method: "POST",
         headers: {
@@ -41,7 +45,6 @@ const AddItem = () => {
           icon: "success",
           draggable: true,
         });
-
         form.reset();
       }
     } catch (error) {
@@ -50,6 +53,8 @@ const AddItem = () => {
         title: "Oops...Sorry....",
         text: "Something went wrong! Try Again",
       });
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -166,17 +171,17 @@ const AddItem = () => {
           <label className="text-[#415765] font-semibold">In Stock</label>
         </div>
 
-        {/* Author Name */}
+        {/* Author Email */}
         <div>
           <label className="block text-[#415765] font-semibold mb-1">
-            Author Name
+            Author Email
           </label>
           <input
-            type="text"
-            name="username"
-            required
-            className="w-full border border-[#415765]/30 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#415765] transition-all duration-300"
-            placeholder="Enter author name"
+            type="email"
+            name="userEmail"
+            value={user.email}
+            readOnly
+            className="w-full border border-[#415765]/30 rounded-xl px-4 py-2 bg-gray-200 text-gray-700 cursor-not-allowed"
           />
         </div>
 
@@ -185,7 +190,7 @@ const AddItem = () => {
           type="submit"
           className="w-full bg-[#415765] text-[#F4F0ED] font-bold py-3 rounded-2xl shadow-md  hover:cursor-pointer"
         >
-          Add Item
+          {loading ? "Adding..." : "Add Item"}
         </button>
       </form>
     </div>

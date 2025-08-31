@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
-  const { signInUser, loginWithGoogle, loginWithGithub, logOut } =
+  const { signInUser, loginWithGoogle, loginWithGithub } =
     useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -19,6 +19,7 @@ const Login = () => {
     const password = form.password.value;
     try {
       setLoading(true);
+
       await signInUser(email, password);
       toast.success("Login successful!");
       navigate("/user/profile");
