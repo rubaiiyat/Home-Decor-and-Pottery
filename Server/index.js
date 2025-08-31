@@ -48,8 +48,13 @@ async function run() {
     // Show All Items
 
     app.get("/all-items", async (req, res) => {
+      const userMail = req.query.userEmail;
       try {
-        const result = await itemCollection.find().toArray();
+        let filter = {};
+        if (userMail) {
+          filter = { userEmail };
+        }
+        const result = await itemCollection.find(filter).toArray();
         res.status(200).json(result);
       } catch (error) {
         res.status(404).json({
