@@ -1,11 +1,64 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import Swal from "sweetalert2";
+import { AuthContext } from "../Context/AuthProvider";
+import { useNavigate } from "react-router";
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
+  const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const form = e.target;
+    const username = form.username.value;
+    const fullName = form.fullName.value;
+    const image = form.image.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+
+    if (password != confirmPassword) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Passwords do not match!",
+      });
+      return;
+    }
+
+    const user = {
+      username,
+      fullName,
+      image,
+      email,
+      password,
+    };
+
+    try {
+      setLoading(true);
+      const result = await createUser(email, password);
+      Swal.fire({
+        icon: "success",
+        title: `Welcome, ${fullName}!`,
+        text: `Your account has been created successfully!`,
+      });
+      form.reset();
+      navigate("/auth/login");
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
+    } finally {
+      setLoading(false);
+    }
+
+    console.log(user);
   };
+
   return (
     <div className="min-h-screen bg-[#E9E9E9] flex items-center justify-center py-10 px-4">
       <form
