@@ -4,7 +4,7 @@ import { FaRegArrowAltCircleRight } from "react-icons/fa";
 
 const ProductItem = ({ item }) => {
   const { _id, name, price, rating, stock, username, image } = item;
-  console.log(stock);
+
   return (
     <div className="group bg-[#F4F0ED] rounded-3xl shadow-md hover:shadow-xl transition-all duration-500 transform  hover:scale-101 overflow-hidden h-full flex flex-col border border-[#D9DFD7] relative">
       {/* Image Section */}
