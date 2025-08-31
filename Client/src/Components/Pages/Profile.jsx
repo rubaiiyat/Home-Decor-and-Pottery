@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import { Link } from "react-router";
+import UserProducts from "./UserProducts";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [userItems, setUserItems] = useState([]);
 
   useEffect(() => {
     if (user?.email) {
@@ -19,6 +21,24 @@ const Profile = () => {
           console.error(err);
           setLoading(false);
         });
+    }
+  }, [user]);
+
+  //Fetch User Items
+
+  useEffect(() => {
+    try {
+      if (user?.email) {
+        setLoading(true);
+        fetch(`http://localhost:3000/all-items?userEmail=${user.email}`)
+          .then((res) => res.json())
+          .then((data) => {
+            setUserItems(data);
+            setLoading(false);
+          });
+      }
+    } catch (error) {
+      setLoading(false);
     }
   }, [user]);
 
@@ -83,6 +103,18 @@ const Profile = () => {
                     Drafts
                   </button>
                 </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {loading ? (
+                  <p>Loading items...</p>
+                ) : userItems.length > 0 ? (
+                  userItems.map((item) => (
+                    <UserProducts key={item.id} item={item}></UserProducts>
+                  ))
+                ) : (
+                  <p>No products added yet.</p>
+                )}
               </div>
 
               <div className="mt-6 flex justify-center">
