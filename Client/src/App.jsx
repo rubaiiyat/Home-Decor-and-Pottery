@@ -2,10 +2,11 @@ import "./App.css";
 import Navbar from "./Components/Navbar/Navbar";
 import { Outlet } from "react-router";
 import Footer from "./Components/Pages/Footer";
-import SliderComponent from "./Components/Pages/SliderComponent";
+import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <div>
+      <Toaster position="top-right" reverseOrder={false} />
       <nav className="">
         <Navbar></Navbar>
       </nav>

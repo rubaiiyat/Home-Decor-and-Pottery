@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthProvider";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
@@ -12,7 +12,6 @@ const Register = () => {
     e.preventDefault();
 
     const form = e.target;
-    const username = form.username.value;
     const fullName = form.fullName.value;
     const image = form.image.value;
     const email = form.email.value;
@@ -29,7 +28,6 @@ const Register = () => {
     }
 
     const user = {
-      username,
       fullName,
       image,
       email,
@@ -39,13 +37,24 @@ const Register = () => {
     try {
       setLoading(true);
       const result = await createUser(email, password);
-      Swal.fire({
-        icon: "success",
-        title: `Welcome, ${fullName}!`,
-        text: `Your account has been created successfully!`,
+
+      const res = await fetch("http://localhost:3000/add-user", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(user),
       });
-      form.reset();
-      navigate("/auth/login");
+      if (res.ok) {
+        const data = await res.json();
+        Swal.fire({
+          icon: "success",
+          title: `Welcome, ${fullName}!`,
+          text: `Your account has been created successfully!`,
+        });
+        form.reset();
+        navigate("/auth/login");
+      }
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -55,8 +64,6 @@ const Register = () => {
     } finally {
       setLoading(false);
     }
-
-    console.log(user);
   };
 
   return (
@@ -68,20 +75,6 @@ const Register = () => {
         <h2 className="text-2xl font-bold text-[#415765] text-center">
           Register
         </h2>
-
-        {/* Username */}
-        <div>
-          <label className="block text-[#415765] font-semibold mb-1">
-            Username
-          </label>
-          <input
-            type="text"
-            name="username"
-            required
-            className="w-full border border-[#415765]/30 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#415765]"
-            placeholder="Enter your username"
-          />
-        </div>
 
         {/* Full Name */}
         <div>
@@ -151,6 +144,18 @@ const Register = () => {
             className="w-full border border-[#415765]/30 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#415765]"
             placeholder="Confirm password"
           />
+        </div>
+
+        <div className="text-center mt-6 text-gray-700">
+          <p className="text-sm">
+            Already have an account?{" "}
+            <Link
+              to="/auth/login"
+              className="text-[#415765] font-bold hover:text-[#253844] transition-colors"
+            >
+              Login here
+            </Link>
+          </p>
         </div>
 
         {/* Submit Button */}
