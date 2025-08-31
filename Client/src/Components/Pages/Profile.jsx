@@ -110,18 +110,11 @@ const Profile = () => {
                   <p>Loading items...</p>
                 ) : userItems.length > 0 ? (
                   userItems.map((item) => (
-                    <UserProducts key={item.id} item={item}></UserProducts>
+                    <UserProducts key={item._id} item={item}></UserProducts>
                   ))
                 ) : (
                   <p>No products added yet.</p>
                 )}
-              </div>
-
-              <div className="mt-6 flex justify-center">
-                <button className="px-6 py-2 bg-white text-[#415765] border border-[#D9DFD7] rounded-xl font-medium hover:bg-[#F4F0ED] transition flex items-center hover:cursor-pointer">
-                  <i className="fas fa-redo mr-2"></i>
-                  Load More
-                </button>
               </div>
             </div>
           </div>

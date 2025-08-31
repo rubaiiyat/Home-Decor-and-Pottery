@@ -21,7 +21,10 @@ const UserProducts = ({ item }) => {
 
       {/* Action Buttons */}
       <div className="flex flex-col gap-2">
-        <Link className="btn px-3 py-1 bg-[#415765] text-white rounded-lg text-sm font-medium hover:bg-[#314d5d] transition">
+        <Link
+          to={`/user/update-product/${_id}`}
+          className="btn px-3 py-1 bg-[#415765] text-white rounded-lg text-sm font-medium hover:bg-[#314d5d] transition"
+        >
           Edit
         </Link>
         <Link className="btn px-3 py-1 bg-red-500 text-white rounded-lg text-sm font-medium hover:bg-red-600 transition">
