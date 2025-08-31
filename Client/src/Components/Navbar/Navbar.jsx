@@ -1,7 +1,23 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { FaUserCircle } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthProvider";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      toast.success("Logout Successfull!");
+      navigate("/");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   const links = (
     <>
       <li>
@@ -106,15 +122,25 @@ const Navbar = () => {
               tabIndex={0}
               className="dropdown-content bg-[#F4F0ED] menu  rounded-box z-1  p-2 shadow-sm text-[#415765]"
             >
-              <li>
-                <Link>Profile</Link>
-              </li>
-              <li>
-                <Link to={"/auth/register"}>Register</Link>
-              </li>
-              <li>
-                <Link to={"/auth/login"}>Login</Link>
-              </li>
+              {user ? (
+                <>
+                  <li>
+                    <Link to={"/user/profile"}>Profile</Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLogout}>Logout</button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link to={"/auth/register"}>Register</Link>
+                  </li>
+                  <li>
+                    <Link to={"/auth/login"}>Login</Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>
