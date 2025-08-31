@@ -107,13 +107,13 @@ const Navbar = () => {
               className="dropdown-content bg-[#F4F0ED] menu  rounded-box z-1  p-2 shadow-sm text-[#415765]"
             >
               <li>
-                <a>Profile</a>
+                <Link>Profile</Link>
               </li>
               <li>
-                <a>Register</a>
+                <Link to={"/auth/register"}>Register</Link>
               </li>
               <li>
-                <a>Login</a>
+                <Link to={"/auth/login"}>Login</Link>
               </li>
             </ul>
           </div>

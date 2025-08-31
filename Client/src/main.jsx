@@ -9,6 +9,7 @@ import Shop from "./Components/Pages/Shop.jsx";
 import Membership from "./Components/Pages/Membership.jsx";
 import AddItem from "./Components/Pages/AddItem.jsx";
 import Home from "./Components/Pages/Home.jsx";
+import Register from "./Components/Auth/Register.jsx";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/add-item",
         element: <AddItem />,
+      },
+      {
+        path: "/auth/register",
+        element: <Register />,
       },
       {
         path: "*",
