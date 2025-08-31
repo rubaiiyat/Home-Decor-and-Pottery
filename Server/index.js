@@ -26,6 +26,7 @@ async function run() {
 
     const database = client.db("potteryshop");
     const itemCollection = database.collection("potteryitem");
+    const userCollection = database.collection("users");
 
     // Create Post
     app.post("/add-item", async (req, res) => {
@@ -98,6 +99,19 @@ async function run() {
         res.status(200).json({
           message: "Item Deleted Successfull",
         });
+      } catch (error) {
+        res.status(404).json({
+          message: error.message,
+        });
+      }
+    });
+
+    // Add User
+    app.post("/add-user", async (req, res) => {
+      const user = req.body;
+      try {
+        const result = await userCollection.insertOne(user);
+        res.status(200).json(result);
       } catch (error) {
         res.status(404).json({
           message: error.message,
