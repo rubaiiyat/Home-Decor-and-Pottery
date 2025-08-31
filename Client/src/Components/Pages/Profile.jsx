@@ -2,12 +2,36 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import { Link } from "react-router";
 import UserProducts from "./UserProducts";
+import Swal from "sweetalert2";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [userItems, setUserItems] = useState([]);
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Are you sure you want to delete this item?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/item/delete/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setUserItems((prev) => prev.filter((item) => item._id != id));
+            Swal.fire("Deleted!", "The product has been deleted.", "success");
+          });
+      }
+    });
+  };
 
   useEffect(() => {
     if (user?.email) {
@@ -110,7 +134,11 @@ const Profile = () => {
                   <p>Loading items...</p>
                 ) : userItems.length > 0 ? (
                   userItems.map((item) => (
-                    <UserProducts key={item._id} item={item}></UserProducts>
+                    <UserProducts
+                      key={item._id}
+                      item={item}
+                      handleDelete={handleDelete}
+                    ></UserProducts>
                   ))
                 ) : (
                   <p>No products added yet.</p>

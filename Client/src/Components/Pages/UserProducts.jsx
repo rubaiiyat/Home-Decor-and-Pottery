@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router";
 
-const UserProducts = ({ item }) => {
+const UserProducts = ({ item, handleDelete }) => {
   const { _id, image, name, category, price } = item;
+
   return (
     <div className="bg-[#D9DFD7] rounded-2xl shadow-md p-4 border border-gray-200 hover:shadow-lg transition flex items-center gap-4">
       {/* Product Image */}
@@ -27,7 +28,10 @@ const UserProducts = ({ item }) => {
         >
           Edit
         </Link>
-        <Link className="btn px-3 py-1 bg-red-500 text-white rounded-lg text-sm font-medium hover:bg-red-600 transition">
+        <Link
+          onClick={() => handleDelete(_id)}
+          className="btn px-3 py-1 bg-red-500 text-white rounded-lg text-sm font-medium hover:bg-red-600 transition"
+        >
           Delete
         </Link>
       </div>
