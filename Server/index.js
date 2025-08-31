@@ -63,6 +63,20 @@ async function run() {
       }
     });
 
+    app.get("/item/details/:id", async (req, res) => {
+      const itemId = req.params.id;
+      try {
+        const result = await itemCollection.findOne({
+          _id: new ObjectId(itemId),
+        });
+        res.status(200).json(result);
+      } catch (error) {
+        res.status(404).json({
+          message: error.message,
+        });
+      }
+    });
+
     app.put("/item/update/:id", async (req, res) => {
       const itemId = req.params.id;
 
