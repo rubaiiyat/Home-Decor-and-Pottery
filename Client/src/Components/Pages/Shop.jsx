@@ -5,6 +5,12 @@ import ProductItem from "./ProductItem";
 const Shop = () => {
   const items = useLoaderData();
   const [loading, setLoading] = useState(true);
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/users")
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
+  }, []);
 
   useEffect(() => {
     if (items && items.length > 0) {
@@ -28,7 +34,7 @@ const Shop = () => {
 
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 ">
           {items.map((item) => (
-            <ProductItem key={item._id} item={item} />
+            <ProductItem key={item._id} item={item} users={users} />
           ))}
         </div>
       </div>

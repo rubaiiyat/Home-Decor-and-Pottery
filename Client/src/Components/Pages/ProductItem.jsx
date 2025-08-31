@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
 
-const ProductItem = ({ item }) => {
+const ProductItem = ({ item, users }) => {
   const { _id, name, price, rating, stock, userEmail, image } = item;
+  const matchUser = users.find((user) => user.email === userEmail);
+  const displayName = matchUser ? matchUser.fullName : userEmail;
 
   return (
     <div className="group bg-[#F4F0ED] rounded-3xl shadow-md hover:shadow-xl transition-all duration-500 transform  hover:scale-101 overflow-hidden h-full flex flex-col border border-[#D9DFD7] relative">
@@ -49,10 +51,10 @@ const ProductItem = ({ item }) => {
         {/* Author Email */}
         <div className="flex items-center gap-2 mb-4">
           <div className="w-7 h-7 bg-[#D9DFD7] rounded-full flex items-center justify-center text-[#415765] text-xs font-bold transform transition-transform duration-300 group-hover:scale-105">
-            {(userEmail || "A").charAt(0).toUpperCase()}
+            {(displayName || "A").charAt(0).toUpperCase()}
           </div>
           <span className="text-sm text-[#415765]/70 italic">
-            by {userEmail?.split("@")[0] || "Anonymous"}
+            by {displayName || "Anonymous"}
           </span>
         </div>
 
