@@ -122,7 +122,12 @@ async function run() {
     // get user
     app.get("/users", async (req, res) => {
       try {
-        const result = await userCollection.find().toArray();
+        const email = req.query.email;
+        let query = {};
+        if (email) {
+          query = { email: email };
+        }
+        const result = await userCollection.find(query).toArray();
         res.status(200).json(result);
       } catch (error) {
         res.status(404).json({
