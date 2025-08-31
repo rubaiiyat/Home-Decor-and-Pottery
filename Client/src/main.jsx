@@ -16,6 +16,7 @@ import Profile from "./Components/Pages/Profile.jsx";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute.jsx";
 import PublicRoute from "./Components/PrivateRoute/PublicRoute.jsx";
 import UpdateProduct from "./Components/Pages/UpdateProduct.jsx";
+import ProductDetials from "./Components/Pages/ProductDetials.jsx";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,16 @@ const router = createBrowserRouter([
             <Profile />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/shop/product/details/:id",
+        element: (
+          <PrivateRoute>
+            <ProductDetials />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/item/details/${params.id}`),
       },
 
       {

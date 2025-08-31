@@ -59,7 +59,7 @@ const ProductItem = ({ item }) => {
         {/* Call-to-Action */}
         <div className="mt-auto">
           <Link
-            to={`/product/${_id}`}
+            to={`/shop/product/details/${_id}`}
             className="flex items-center justify-between bg-[#D9DFD7] hover:bg-[#D9DFD7]/90 rounded-2xl px-4 py-3 border border-[#D9DFD7] transition-all duration-300 transform group-hover:scale-102"
           >
             <span className="text-sm font-bold text-[#415765] group-hover:text-[#415765]/80 transition-colors duration-300">
