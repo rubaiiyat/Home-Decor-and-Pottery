@@ -52,7 +52,7 @@ async function run() {
       try {
         let filter = {};
         if (userMail) {
-          filter = { userEmail };
+          filter = { userEmail: userMail };
         }
         const result = await itemCollection.find(filter).toArray();
         res.status(200).json(result);
