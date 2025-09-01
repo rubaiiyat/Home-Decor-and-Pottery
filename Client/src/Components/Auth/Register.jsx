@@ -27,6 +27,19 @@ const Register = () => {
       return;
     }
 
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (!passwordRegex.test(password)) {
+      Swal.fire({
+        icon: "error",
+        title: "Weak Password",
+        text: "Password must be 8+ character and include uppercase, lowercase, number & special character",
+      });
+
+      return;
+    }
+
     const user = {
       fullName,
       image,
@@ -56,10 +69,16 @@ const Register = () => {
         navigate("/auth/login");
       }
     } catch (error) {
+      let message = error.message;
+
+      if (message.includes("email")) {
+        message =
+          "Email already in use. Please login or use a different email.";
+      }
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: error.message,
+        text: message,
       });
     } finally {
       setLoading(false);
