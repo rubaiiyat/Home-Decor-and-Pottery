@@ -3,9 +3,9 @@ import { Link } from "react-router";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
 
 const ProductItem = ({ item, users }) => {
-  const { _id, name, price, rating, stock, userEmail, image } = item;
+  const { _id, name, category, price, rating, stock, userEmail, image } = item;
   const matchUser = users.find((user) => user.email === userEmail);
-  const displayName = matchUser ? matchUser.fullName : userEmail;
+  const displayName = matchUser ? matchUser.fullName : userEmail.split("@")[0];
 
   return (
     <div className="group bg-[#F4F0ED] rounded-3xl shadow-md hover:shadow-xl transition-all duration-500 transform  hover:scale-101 overflow-hidden h-full flex flex-col border border-[#D9DFD7] relative">
@@ -47,6 +47,10 @@ const ProductItem = ({ item, users }) => {
         <h3 className="font-bold text-[#415765] text-base sm:text-lg line-clamp-2 mb-3 transition-colors duration-300 ">
           {name}
         </h3>
+
+        <h2 className=" text-[#415765] text-sm line-clamp-2 mb-3 transition-colors duration-300 ">
+          <span className="font-bold">Tag:</span> {category}
+        </h2>
 
         {/* Author Email */}
         <div className="flex items-center gap-2 mb-4">
