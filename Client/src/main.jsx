@@ -31,13 +31,16 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <Shop />,
-        loader: () => fetch("http://localhost:3000/all-items"),
+        loader: () =>
+          fetch("https://home-decor-pottery-server.onrender.com/all-items"),
       },
       {
         path: "/shop/category/:category?",
         element: <Shop />,
         loader: async () => {
-          const res = await fetch("http://localhost:3000/all-items");
+          const res = await fetch(
+            "https://home-decor-pottery-server.onrender.com/all-items"
+          );
           const data = await res.json();
           return data;
         },
@@ -86,7 +89,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/item/details/${params.id}`),
+          fetch(
+            `https://home-decor-pottery-server.onrender.com/item/details/${params.id}`
+          ),
       },
 
       {
@@ -97,7 +102,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/item/details/${params.id}`),
+          fetch(
+            `https://home-decor-pottery-server.onrender.com/item/details/${params.id}`
+          ),
       },
       {
         path: "*",

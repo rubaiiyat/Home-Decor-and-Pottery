@@ -21,9 +21,12 @@ const Profile = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/item/delete/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://home-decor-pottery-server.onrender.com/item/delete/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             setUserItems((prev) => prev.filter((item) => item._id != id));
@@ -35,7 +38,9 @@ const Profile = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/users?email=${user.email}`)
+      fetch(
+        `https://home-decor-pottery-server.onrender.com/users?email=${user.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setUserData(data[0]);
@@ -54,7 +59,9 @@ const Profile = () => {
     try {
       if (user?.email) {
         setLoading(true);
-        fetch(`http://localhost:3000/all-items?userEmail=${user.email}`)
+        fetch(
+          `https://home-decor-pottery-server.onrender.com/all-items?userEmail=${user.email}`
+        )
           .then((res) => res.json())
           .then((data) => {
             setUserItems(data);

@@ -34,7 +34,7 @@ const Shop = () => {
   }, [category, items]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/users")
+    fetch("https://home-decor-pottery-server.onrender.com/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, []);

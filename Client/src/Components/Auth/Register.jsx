@@ -51,13 +51,16 @@ const Register = () => {
       setLoading(true);
       const result = await createUser(email, password);
 
-      const res = await fetch("http://localhost:3000/add-user", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
+      const res = await fetch(
+        "https://home-decor-pottery-server.onrender.com/add-user",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
       if (res.ok) {
         const data = await res.json();
         Swal.fire({

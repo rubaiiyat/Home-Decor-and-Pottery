@@ -6,7 +6,7 @@ const BestSellingProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/all-items")
+    fetch("https://home-decor-pottery-server.onrender.com/all-items")
       .then((res) => res.json())
       .then((data) => {
         const topRated = data.filter((item) => parseFloat(item.rating) > 4.7);

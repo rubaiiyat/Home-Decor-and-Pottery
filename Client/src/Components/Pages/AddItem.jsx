@@ -31,13 +31,16 @@ const AddItem = () => {
 
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:3000/add-item", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(item),
-      });
+      const res = await fetch(
+        "https://home-decor-pottery-server.onrender.com/add-item",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(item),
+        }
+      );
       if (res.ok) {
         const data = await res.json();
         Swal.fire({

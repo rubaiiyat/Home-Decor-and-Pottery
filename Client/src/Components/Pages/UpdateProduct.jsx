@@ -43,13 +43,16 @@ const UpdateProduct = () => {
       stock,
     };
     try {
-      fetch(`http://localhost:3000/item/update/${_id}`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(updateItem),
-      })
+      fetch(
+        `https://home-decor-pottery-server.onrender.com/item/update/${_id}`,
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(updateItem),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           Swal.fire({
