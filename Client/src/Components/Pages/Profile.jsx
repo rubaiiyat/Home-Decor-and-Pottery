@@ -108,7 +108,7 @@ const Profile = () => {
 
               <div className="mt-6 w-full">
                 <Link to={"/add-item"}>
-                  <button className="w-full bg-[#415765] text-[#D9DFD7] border border-[#1f3a4a] py-2 sm:py-3 rounded-xl font-medium hover:bg-[#314d5d] transition">
+                  <button className="w-full bg-[#415765] text-[#D9DFD7] border border-[#1f3a4a] py-2 sm:py-3 rounded-xl font-medium hover:bg-[#314d5d] transition hover:cursor-pointer">
                     Add New Product
                   </button>
                 </Link>

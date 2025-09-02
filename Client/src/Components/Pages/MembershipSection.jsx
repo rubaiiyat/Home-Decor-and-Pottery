@@ -39,7 +39,7 @@ const MembershipSection = () => {
   ];
 
   return (
-    <section className="relative bg-[#E9E9E9] py-16 px-4 sm:px-6 lg:px-28 rounded-3xl overflow-hidden">
+    <section className="relative bg-[#E9E9E9] py-16 px-4 sm:px-6 lg:px-28 overflow-hidden">
       {/* Decorative Circles */}
       <div className="absolute top-0 left-0 w-24 h-24 sm:w-32 sm:h-32 bg-[#415765]/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-32 h-32 sm:w-40 sm:h-40 bg-[#D9DFD7]/30 rounded-full translate-x-1/3 translate-y-1/3"></div>
