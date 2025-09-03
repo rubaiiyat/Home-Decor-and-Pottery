@@ -66,7 +66,7 @@ const Navbar = () => {
               : "text-[#415765] hover:underline"
           }
         >
-          Add Book
+          Add Product
         </NavLink>
       </li>
     </>
